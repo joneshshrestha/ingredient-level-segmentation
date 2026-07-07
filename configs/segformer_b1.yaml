@@ -1,0 +1,79 @@
+# ===========================================================================
+# SegFormer-B1 fine-tuning config for ingredient-level FoodSeg103 segmentation
+# (controlled comparison vs B0: identical to segformer_b0.yaml except
+#  model_name and output_dir; keep all other settings the same for fairness)
+# ---------------------------------------------------------------------------
+# Every path and hyperparameter is configurable. CLI flags in train.py /
+# evaluate.py / predict.py override the values here.
+# ===========================================================================
+
+# --- Paths ------------------------------------------------------------------
+# Root of the (manually downloaded) FoodSeg103 dataset. It must CONTAIN the
+# dataset files (Images/, ImageSets/, category_id.txt) -- see README for layout.
+dataset_root: /home/jshresth/RL_deeplearning/ingredient-level-segmentation/data/FoodSeg103
+# Where checkpoints, training_history.csv, eval metrics and logs are written.
+output_dir: /home/jshresth/RL_deeplearning/ingredient-level-segmentation/outputs/segformer_b1
+# Local Hugging Face model cache (kept inside the project; git-ignored).
+hf_home: /home/jshresth/RL_deeplearning/ingredient-level-segmentation/hf_cache
+
+# --- Dataset layout (null = auto-detect the official FoodSeg103 zip layout) --
+# Auto-detection expects: <root>/Images/img_dir/{train,test} and
+#                         <root>/Images/ann_dir/{train,test}
+# with optional <root>/ImageSets/{train,test}.txt split lists.
+image_subdir: null        # e.g. "Images/img_dir"  (overrides auto-detect)
+mask_subdir: null         # e.g. "Images/ann_dir"
+label_map_file: null      # null = auto-find category_id.txt under dataset_root
+
+# --- Model ------------------------------------------------------------------
+# Larger-capacity SegFormer variant: ImageNet-pretrained MiT-B1 backbone with a
+# FRESH segmentation head (no ADE20K label baggage). This is the ONLY model
+# difference from segformer_b0.yaml -- everything else is kept identical so the
+# B0 vs B1 comparison is controlled.
+model_name: nvidia/mit-b1
+use_ade20k_checkpoint: false   # if true -> loads an ADE20K-finetuned SegFormer-B0
+                               #            and replaces the head (ignore_mismatched_sizes=True)
+# num_labels is DERIVED from category_id.txt + observed mask values. Leave null.
+# Only set an integer to force-override (not recommended).
+num_labels: null
+
+# --- Label semantics (explicit background / ignore handling) ----------------
+ignore_index: 255         # pixels with this value are excluded from loss & metrics
+background_id: 0          # FoodSeg103 uses 0 = background (non-food)
+do_reduce_labels: false   # MUST stay false for FoodSeg103 (masks are 0..N-1, not ADE20K-style).
+                          # If ever set true: background(0)->ignore, others shift down by 1,
+                          # and existing ignore pixels are protected (never become 254).
+
+# --- Training ---------------------------------------------------------------
+image_size: 512           # square train/val crop fed to the model
+batch_size: 8
+learning_rate: 6.0e-5     # SegFormer fine-tuning default
+weight_decay: 0.01
+epochs: 40
+lr_scheduler: poly        # poly | none
+poly_power: 1.0
+warmup_steps: 0
+num_workers: 4
+seed: 42
+mixed_precision: bf16     # bf16 | fp16 | no   (A100 -> bf16 recommended)
+max_grad_norm: 1.0        # gradient clipping (set 0 / null to disable)
+
+# --- Validation split (FoodSeg103 ships train/test only) --------------------
+# A seeded validation split is carved from the official TRAIN set for
+# checkpoint selection. The official TEST set is reserved for final evaluation.
+val_split_fraction: 0.1
+
+# --- Smoke test (tiny end-to-end run to verify the pipeline) ----------------
+smoke_test:
+  enabled: false
+  num_train: 8
+  num_val: 8
+  epochs: 1
+  batch_size: 2
+
+# --- Visualization / area summary -------------------------------------------
+visualization:
+  alpha: 0.5              # overlay transparency
+  topk: 5                # top-k ingredients reported in area summaries
+  figure_dir: paper_assets/figures
+  dpi: 150
+  max_legend_items: 25   # cap legend entries on busy images

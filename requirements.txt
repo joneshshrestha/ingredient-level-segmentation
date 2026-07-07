@@ -1,0 +1,33 @@
+# Ingredient-Level Food Image Segmentation (SegFormer-B0 / FoodSeg103)
+#
+# Recommended: a dedicated conda env named `foodseg` with torch >= 2.6 (needed
+# to load modern Hugging Face checkpoints; see README "Setup"). Install torch +
+# torchvision from the PyTorch CUDA wheel index FIRST, then the rest:
+#
+#     conda create -n foodseg python=3.10 -y && conda activate foodseg
+#     pip install torch torchvision --index-url https://download.pytorch.org/whl/cu128
+#     pip install -r requirements.txt
+#
+# (If cu128 wheels don't fit this machine, use the official PyTorch selector and
+#  pick the matching CUDA wheel, e.g. cu126.)
+
+torch>=2.6
+torchvision>=0.21
+transformers>=5.0
+accelerate>=0.30
+safetensors>=0.4
+huggingface_hub>=0.23
+packaging>=21.0
+numpy>=1.24
+pandas>=2.0
+pillow>=9.5
+opencv-python>=4.8
+matplotlib>=3.7
+scikit-learn>=1.3
+tqdm>=4.65
+pyyaml>=6.0
+ipykernel>=6.0
+
+# Optional -- only needed if you switch the loader to the HuggingFace
+# `datasets` source instead of the official FoodSeg103 zip layout.
+# datasets>=2.18

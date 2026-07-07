@@ -1,0 +1,15 @@
+{
+  "dataset": "FoodSeg103",
+  "source_layout_before_cleanup": "data/FoodSeg103",
+  "original_train_images": 4983,
+  "training_images_after_validation_split": 4485,
+  "validation_images_carved_from_train": 498,
+  "held_out_test_images": 2135,
+  "label_ids": 104,
+  "background_id": 0,
+  "ignore_index": 255,
+  "do_reduce_labels": false,
+  "val_split_fraction": 0.1,
+  "seed": 42,
+  "note": "Lightweight dataset metadata preserved before moving raw data to cleanup trash."
+}

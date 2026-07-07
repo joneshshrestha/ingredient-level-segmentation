@@ -1,0 +1,18 @@
+{
+  "checkpoint": "outputs/segformer_b0/best",
+  "split": "test",
+  "num_images": 2135,
+  "num_labels": 104,
+  "eval_resolution": "original",
+  "metric_definitions": {
+    "mean_iou": "mean of per-class TP/(TP+FP+FN) over classes present in GT or pred",
+    "pixel_accuracy": "correct pixels / evaluated pixels (ignore_index excluded)",
+    "note": "Same-split/metric/preprocessing as published FoodSeg103 is NOT guaranteed; treat published numbers as rough references only."
+  },
+  "pixel_accuracy": 0.7708702661965782,
+  "mean_iou": 0.2521098137242264,
+  "mean_iou_no_background": 0.2456588419945082,
+  "mean_class_accuracy": 0.3589608616470337,
+  "num_classes_present": 104,
+  "num_classes_total": 104
+}

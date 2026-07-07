@@ -1,0 +1,11 @@
+class_id,class_name,iou,accuracy,gt_pixels,present
+2,egg tart,0.0,0.0,113140,True
+7,pudding,0.0,0.0,22121,True
+16,tea,0.0,0.0,163139,True
+27,apricot,0.0,0.0,255111,True
+26,date,0.0,0.0,56548,True
+23,peanut,0.0,0.0,108047,True
+19,cashew,0.0,0.0,114255,True
+20,dried cranberries,0.0,0.0,110381,True
+53,crab,0.0,0.0,1047263,True
+60,hamburg,0.0,0.0,39948,True

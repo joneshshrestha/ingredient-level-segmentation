@@ -1,0 +1,8 @@
+Metric,Value,Raw
+Pixel accuracy,77.09%,0.7708702661965782
+Mean IoU,25.21%,0.2521098137242264
+Mean IoU excluding background,24.57%,0.2456588419945082
+Mean class accuracy,35.90%,0.3589608616470337
+Classes present,104 / 104,104 / 104
+Test images,2135,2135
+Labels,104,104

@@ -216,3 +216,114 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# ============================================================
+# Project data
+# ============================================================
+
+data/*
+!data/README.md
+
+
+# ============================================================
+# Generated training outputs and inference results
+# ============================================================
+
+outputs/
+results/
+checkpoints/
+artifacts/
+
+# Model weights and exported models
+*.pt
+*.pth
+*.ckpt
+*.safetensors
+*.onnx
+*.h5
+*.keras
+
+
+# ============================================================
+# Logs and experiment-tracking artifacts
+# ============================================================
+
+metrics/logs/
+logs/
+*.log
+
+runs/
+wandb/
+mlruns/
+lightning_logs/
+tensorboard/
+
+
+# ============================================================
+# Python
+# ============================================================
+
+__pycache__/
+*.py[cod]
+*$py.class
+
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+.coverage.*
+htmlcov/
+
+build/
+dist/
+*.egg-info/
+
+
+# ============================================================
+# Virtual environments
+# ============================================================
+
+.venv/
+venv/
+env/
+ENV/
+conda-env/
+
+
+# ============================================================
+# Jupyter
+# ============================================================
+
+.ipynb_checkpoints/
+*.nbconvert.ipynb
+
+
+# ============================================================
+# Environment variables, credentials, and secrets
+# ============================================================
+
+.env
+.env.*
+!.env.example
+
+.aws/
+credentials.json
+credentials*.json
+secrets/
+*.pem
+*.key
+
+
+# ============================================================
+# IDE and operating-system files
+# ============================================================
+
+.DS_Store
+Thumbs.db
+
+.idea/
+.vscode/
+
+*.swp
+*.swo
+*~

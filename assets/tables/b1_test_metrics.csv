@@ -1,0 +1,11 @@
+Metric,Key,Value
+Pixel accuracy,pixel_accuracy,0.7929485101387304
+Mean IoU,mean_iou,0.32037178081111073
+mIoU excl. background,mean_iou_no_background,0.31448240744927175
+Mean class accuracy,mean_class_accuracy,0.43777256777879636
+Split,split,test
+Test images,num_images,2135
+Labels,num_labels,104
+Evaluation resolution,eval_resolution,original
+Classes present,classes_present,104 / 104
+Checkpoint,checkpoint,outputs/segformer_b1/best

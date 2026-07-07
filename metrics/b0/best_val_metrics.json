@@ -1,0 +1,10 @@
+{
+  "pixel_accuracy": 0.7719519741563912,
+  "mean_iou": 0.2952861355837405,
+  "mean_iou_no_background": 0.28879365654008304,
+  "mean_class_accuracy": 0.40326465914372317,
+  "num_classes_present": 97,
+  "num_classes_total": 104,
+  "val_loss": 0.8529214107367887,
+  "epoch": 37
+}
